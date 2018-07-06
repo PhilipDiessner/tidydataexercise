@@ -1,4 +1,4 @@
-#Feature Selection 
+# Feature Selection 
 
 ## Following the code book of the original data set
 
@@ -18,8 +18,12 @@ std: Standard deviation
 
 where the label is added to the variable name
 
-"subject" denotes the one of the 30 test subjects the data was taken from
-"activity" decribes the activity done taking the data
+* Features are normalized and bounded within [-1,1] to the gravitational constant g
+* Each feature vector is a row on the text file.
+
+"subject" denotes the one of the 30 test subjects the data was taken from  
+"activity" decribes the activity done taking the data 
+(WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING)   
 
 ***
 
