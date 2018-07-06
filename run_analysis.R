@@ -69,12 +69,22 @@ averageing <- function(datfr){
 }
 
 # download data set, unpack, create tidy set, then clean up
+dataexists <- FALSE
+samsungdata <- "UCI HAR Dataset"
 
-webpath <-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-download.file(webpath,"dataset.zip",mode="wb")
-unzip("dataset.zip")
+if (file.exists(samsungdata)){
+ dataexists <- TRUE
+} else {
+    webpath <-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+    download.file(webpath,"dataset.zip",mode="wb")
+    unzip("dataset.zip")
+}
+
 output <-"tidydataset.csv"
-result <- getfulltable("UCI HAR Dataset")
+result <- getfulltable(samsungdata)
 write.table(result %>% getmeanstd %>% labeling %>% averageing, file = output,
             row.names = FALSE)
-unlink(c("dataset.zip","UCI HAR Dataset"), recursive = TRUE)
+
+if (!dataexists){
+    unlink(c("dataset.zip","UCI HAR Dataset"), recursive = TRUE)
+}
