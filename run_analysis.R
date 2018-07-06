@@ -75,5 +75,6 @@ download.file(webpath,"dataset.zip",mode="wb")
 unzip("dataset.zip")
 output <-"tidydataset.csv"
 result <- getfulltable("UCI HAR Dataset")
-write.table(result %>% getmeanstd %>% labeling %>% averageing, file = output)
+write.table(result %>% getmeanstd %>% labeling %>% averageing, file = output,
+            row.names = FALSE)
 unlink(c("dataset.zip","UCI HAR Dataset"), recursive = TRUE)
