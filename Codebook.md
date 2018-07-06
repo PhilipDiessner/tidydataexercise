@@ -18,10 +18,11 @@ std: Standard deviation
 
 where the label is added to the variable name
 
-* Features are normalized and bounded within [-1,1] to the gravitational constant g
+* Features are normalized and bounded within [-1,1] 
+(acceleration to the gravitational constant g, gyroscope units are rad/seg.
 * Each feature vector is a row on the text file.
 
-"subject" denotes the one of the 30 test subjects the data was taken from  
+"subject" denotes the one of the 30 test subjects the data was taken from ranging from 1 to 30
 "activity" decribes the activity done taking the data 
 (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING)   
 
