@@ -13,7 +13,7 @@ Finally a Fast Fourier Transform (FFT) was applied to some of these signals prod
 
 The set of variables that were estimated from these are: 
 
-mean: Mean value
+mean: Mean value  
 std: Standard deviation
 
 where the label is added to the variable name
