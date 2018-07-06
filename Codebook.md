@@ -19,7 +19,7 @@ std: Standard deviation
 where the label is added to the variable name
 
 * Features are normalized and bounded within [-1,1] 
-(acceleration to the gravitational constant g, gyroscope units are rad/seg.
+(acceleration to the gravitational constant g, gyroscope units are rad/seg before normalisation.)
 * Each feature vector is a row on the text file.
 
 "subject" denotes the one of the 30 test subjects the data was taken from ranging from 1 to 30
@@ -60,16 +60,16 @@ The complete list of variables of each feature vector following the above descri
 "timebodygyroscopejerkxstd"               
 "timebodygyroscopejerkystd"  
 "timebodygyroscopejerkzstd"  
-"timebodyaccelerationmagmean"             
-"timebodyaccelerationmagstd"  
-"timegravityaccelerationmagmean"  
-"timegravityaccelerationmagstd"           
-"timebodyaccelerationjerkmagmean"  
-"timebodyaccelerationjerkmagstd"  
-"timebodygyroscopemagmean"                
-"timebodygyroscopemagstd"  
-"timebodygyroscopejerkmagmean"  
-"timebodygyroscopejerkmagstd"             
+"timebodyaccelerationmagnitudemean"             
+"timebodyaccelerationmagnitudestd"  
+"timegravityaccelerationmagnitudemean"  
+"timegravityaccelerationmagnitudestd"           
+"timebodyaccelerationjerkmagnitudemean"  
+"timebodyaccelerationjerkmagnitudestd"  
+"timebodygyroscopemagnitudemean"                
+"timebodygyroscopemagnitudestd"  
+"timebodygyroscopejerkmagnitudemean"  
+"timebodygyroscopejerkmagnitudestd"             
 "frequencybodyaccelerationxmean"  
 "frequencybodyaccelerationymean"  
 "frequencybodyaccelerationzmean"          
@@ -96,3 +96,6 @@ The complete list of variables of each feature vector following the above descri
 "frequencybodybodygyroscopemagstd"  
 "frequencybodybodygyroscopejerkmagmean"  
 "frequencybodybodygyroscopejerkmagstd"  
+
+(note that bodybody is probably a typo of the original data set for just body, but not corrected as information
+on this is missing)
