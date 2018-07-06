@@ -23,8 +23,6 @@ getfulltable <- function(pathtodataset){
     active <- readin("activity_labels.txt")
     features <- readin("features.txt", stringsAsFactors = FALSE)
 
-    # TODO rename features
-
     names(testx) <- features[,2]
     names(testy) <- "activnum"
     names(testsub) <- "subject"
@@ -49,11 +47,29 @@ getmeanstd <- function(datfr){
     select(datfr,needed)
 }
 
+# tidy up labeling
+labeling <- function(datfr){
+    toregexp <- names(datfr)
+    toregexp <- gsub("^t","time",toregexp)
+    toregexp <- gsub("^f","frequency",toregexp)
+    toregexp <- gsub("Acc","acceleration",toregexp)
+    toregexp <- gsub("Gyro","gyroscope",toregexp)
+    toregexp <- gsub("Mag","magnitude",toregexp)
+    toregexp <- gsub("-(mean|std)\\(\\)-*([XYZ]*)","\\2\\1",toregexp)
+    toregexp <- tolower(toregexp)
+    names(datfr)<- toregexp
+    datfr
+}
+
+# average over all mean and std for each subject and activity
 averageing <- function(datfr){
     datfr %>% group_by(subject,activity) %>% summarise_all(funs(mean))
 }
 
-pathtodata <- "data/ExcerciseDataset"
+webpath <-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+#download.file(webpath,"dataset.zip",mode="wb")
+#unzip("dataset.zip")
 output <-"tidydataset.csv"
-result <- getfulltable(pathtodataset)
-write.table(result %>% getmeanstd %>% averageing, file = output)
+result <- getfulltable("UCI HAR Dataset")
+write.table(result %>% getmeanstd %>% labeling %>% averageing, file = output)
+#unlink(c("dataset.zip","UCI HAR Dataset"), recursive = TRUE)
