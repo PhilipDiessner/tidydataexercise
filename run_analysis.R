@@ -1,4 +1,6 @@
 library("dplyr")
+## See README.md in directory for description of this script
+##
 
 # function reads all necessary files from dataset and merges them
 # to one data frame using activity names and adding variable names
@@ -39,7 +41,7 @@ getfulltable <- function(pathtodataset){
     full[order(full$subject),]
 }
 
-# from datframe select only mean and std of measurments as data together with
+# from dataframe select only mean and std of measurments as data together with
 # subject and activity
 getmeanstd <- function(datfr){
     # columns matching subject, activity, mean(), or std()
@@ -66,10 +68,12 @@ averageing <- function(datfr){
     datfr %>% group_by(subject,activity) %>% summarise_all(funs(mean))
 }
 
+# download data set, unpack, create tidy set, then clean up
+
 webpath <-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-#download.file(webpath,"dataset.zip",mode="wb")
-#unzip("dataset.zip")
+download.file(webpath,"dataset.zip",mode="wb")
+unzip("dataset.zip")
 output <-"tidydataset.csv"
 result <- getfulltable("UCI HAR Dataset")
 write.table(result %>% getmeanstd %>% labeling %>% averageing, file = output)
-#unlink(c("dataset.zip","UCI HAR Dataset"), recursive = TRUE)
+unlink(c("dataset.zip","UCI HAR Dataset"), recursive = TRUE)
